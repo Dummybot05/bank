@@ -5,11 +5,21 @@ import express from 'express';
 import { neon } from "@neondatabase/serverless";
 import bcrypt from 'bcrypt';
 import session from 'express-session';
-import QRCode from 'qrcode'
+import QRCode from 'qrcode';
+import cors from 'cors';
+
 
 const app = express();
 const sql = neon(process.env.DATABASE_URL);
 const port = parseInt(process.env.PORT) || 3000;
+
+const corsOptions = {
+  origin: '*', // or replace with specific origins like 'http://example.com'
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
 
 const regForMail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const regForPassword = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
