@@ -35,6 +35,7 @@ app.use(
 
 app.use(express.json());
 
+
 const generateQR = async text => {
   try {
     var data = await QRCode.toDataURL(text);
