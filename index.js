@@ -137,7 +137,7 @@ app.post('/login', async (req, res) => {
           return;
         }
       } else {
-        res.status(500).send({ error: "Email not EXIST" });
+        res.status(500).send({ status: "failed", message: "Email not EXIST" });
         return;
       }
     } catch (e) {
